@@ -1,0 +1,17 @@
+INSTALLED_APPS = (
+  'main',
+  'suit',
+  'django.contrib.admin',
+  'django.contrib.auth',
+  'django.contrib.contenttypes',
+  'django.contrib.sessions',
+  'django.contrib.messages',
+  'django.contrib.staticfiles',
+
+  'south',
+  'compressor',
+  'crop_override',
+  'sorl.thumbnail',
+)
+
+COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
