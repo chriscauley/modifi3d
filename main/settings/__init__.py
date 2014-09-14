@@ -1,10 +1,19 @@
 # Settings loader file.
 
+<<<<<<< HEAD
 import os, sys, glob, re, socket
 pwd = os.path.dirname(__file__)
 sys.path.append(os.path.join(pwd,'..'))
 sys.path.append(os.path.join(pwd,'..','..'))
 sys.path.append(os.path.join(pwd,'..','..','..'))
+=======
+import os
+import glob
+import re
+import socket
+
+pwd = os.path.dirname(__file__)
+>>>>>>> 1695e4b56b6ec4feaca4f37049ead4592c99635a
 # Open and compile each file
 for f in ['00-base.py','10-apps.py']:
   exec(compile(open(os.path.join(pwd,f)).read(), f, 'exec'), globals(), locals())
