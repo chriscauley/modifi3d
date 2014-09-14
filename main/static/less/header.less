@@ -1,0 +1,58 @@
+header {
+}
+
+header nav {
+}
+.scaleHeader(@scale) {
+}
+
+.mobileHeader() {
+  @height: 34px;
+  @logoHeight: 45px;
+  header nav {
+    height: auto;
+    max-height: @logoHeight;
+    line-height: @height;
+    overflow: hidden;
+    .transition(all 0.25s 0 ease-out);
+    &.expanded { max-height: 500px; }
+    .nav-trigger {
+      background: url("{{ STATIC_URL }}images/nav_button.png") #111111 center no-repeat; 
+      border: 0;
+      height: @logoHeight;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: @logoHeight;
+    }
+    .logo {
+      background-color: black;
+      background-position: 5px;
+      background-size: auto 85%;
+      float: none;
+      height: @logoHeight;
+      margin: 0;
+      padding: 0;
+      width: auto;
+    }
+    .close-tray {
+      cursor: pointer;
+      height: 20px;
+      position: relative;
+      width: 100%;
+      &:before {
+	content:"";
+	display: block;
+	border: 6px solid;
+	border-color: transparent transparent @gray transparent;
+	bottom: 6px;
+	height: 0;
+	left: 50%;
+	margin-left: -6px;
+	position: absolute;
+	width: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.mobile { display: none; }
+.scaleAll(@scale) {
+  .scaleHome(@scale);
+  .scaleFooter(@scale);
+  .scaleHeader(@scale);
+  #wrapper { max-width: 1280px*@scale; }
+  header { max-width: 1280px*@scale; }
+}
+
+@media (min-width: 1025px) { .scaleAll(1); }
+@media (max-width: 1024px), (max-height: 800px) { .scaleAll(0.8); }
+@media (max-width: 768px), (max-height: 700px) { .scaleAll(0.6); }
+@media (max-width: 768px) {
+  .desktop { display: none; }
+}
+
+@media (max-width: 480px) {
+  .mobile { display: block; }
+  .tablet { display: none; }
+  .mobileHeader();
+  .mobileHome();
+  .mobileFooter();
+}
