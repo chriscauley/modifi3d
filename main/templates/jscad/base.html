@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Modifi3d</title>
+<link rel="shortcut icon" href="{{ STATIC_URL }}OpenJSCAD.org/imgs/favicon.png" type="image/x-png">
+<link rel="stylesheet" href="{{ STATIC_URL }}OpenJSCAD.org/jquery/themes/base/jquery-ui.css" />
+<script src="{{ STATIC_URL }}OpenJSCAD.org/jquery/jquery-1.9.1.js"></script>
+<script src="{{ STATIC_URL }}OpenJSCAD.org/jquery/jquery-ui.js"></script>
+<script src="{{ STATIC_URL }}OpenJSCAD.org/jquery/jquery.hammer.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}OpenJSCAD.org/style.css" type="text/css">
+<link rel="stylesheet" href="{{ STATIC_URL }}OpenJSCAD.org/openjscad.css" type="text/css">
+</head>
+<body onload="onload()">
+<style>
+/* we choose chrome theme for ace, and make sure line number is transparent too */
+/* this has to stay in the body (not head) otherwise does not take effect */
+.ace-chrome .ace_gutter { 
+   border-left: 2px dashed rgba(200,200,200,0.2);
+   background: none;
+}
+.ace-chrome {
+   font-size: 10pt;     // -- not 'px', but 'pt' for high dpi screens
+}
+</style>
+<script src="{{ STATIC_URL }}OpenJSCAD.org/lightgl.js"></script>
+<script src="{{ STATIC_URL }}OpenJSCAD.org/csg.js"></script>
+<script src="{{ STATIC_URL }}OpenJSCAD.org/openjscad.js"></script>
+<script src="{{ STATIC_URL }}OpenJSCAD.org/openscad.js"></script>
+<script src="{{ STATIC_URL }}OpenJSCAD.org/underscore.js"></script>
+<script src="{{ STATIC_URL }}OpenJSCAD.org/canvas.js"></script>
+<script src="{{ STATIC_URL }}OpenJSCAD.org/openscad-openjscad-translator.js"></script>
+{% include "jscad/menu.html" %}
+<div id="editorWrapper">
+  <img id="editorHandle" src="{{ STATIC_URL }}OpenJSCAD.org/imgs/menuHandleVL.png" style="top: 45%;">
+  <div id="editor">
+// -- OpenJSCAD.org logo
+function main() {
+   return union(
+      difference(
+         cube({size: 3, center: true}),
+         sphere({r:2, center: true})
+      ),
+      intersection(
+          sphere({r: 1.3, center: true}),
+          cube({size: 2.1, center: true})
+      )
+   ).translate([0,0,1.5]).scale(10);
+}
+  </div>
+</div>
+
+<div oncontextmenu="return false;" id="viewer"></div> <!-- avoiding popup when right mouse is clicked -->
+
+<div id="parametersdiv"></div>
+<div id="tail">
+  <div id="statusdiv"></div>
+  <div id="errordiv"></div>
+  <div id="filedropzone">
+    <div id="filedropzone_empty">
+      Drop your jscad, scad, amf, stl file or multiple jscad files
+      <span class="chrome-only">or folder with jscad files</span>
+      here (see 
+      <a style='font-weight: normal' target=_blank
+         href='https://github.com/Spiritdude/OpenJSCAD.org/wiki/User-Guide#support-of-include'>details</a>)
+      <br>or edit OpenJSCAD or OpenSCAD source-code in built-in editor direct.
+    </div>
+    <div id="filedropzone_filled">
+      <span id="currentfile">...</span>
+      <div id="filebuttons">
+        <button id="getstlbutton" style="display:none" onclick="getStl();">Get STL</button>
+        <button onclick="superviseAllFiles({forceReload:true});">Reload</button>
+        <!--button onclick="parseFile(gCurrentFile,true,false);">Debug (see below)</button-->
+	<label for="autoreload">Auto Reload</label><input type="checkbox" name="autoreload" value="" id="autoreload" onclick="toggleAutoReload();">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="footer">
+<!--script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script-->
+<script src="{{ STATIC_URL }}OpenJSCAD.org/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+var ex = [{% for item in items %}
+  { file:"{{ item.get_url }}", title: "{{ item }}" }{% if not forloop.last %},{% endif %}
+{% endfor %}]
+</script>
+<script src="{{ STATIC_URL }}init.js"></script>
+</body></html> 
