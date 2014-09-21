@@ -34,3 +34,8 @@ class Configuration(FileModel):
 class Item(FileModel):
   class Meta:
     ordering = ('name',)
+
+class ItemSetting(FileModel):
+  item = models.ForeignKey(Item)
+  class Meta:
+    ordering = ('name',)
