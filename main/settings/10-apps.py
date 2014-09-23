@@ -35,12 +35,9 @@ SUIT_CONFIG = {
   # },
   # 'MENU_OPEN_FIRST_CHILD': True, # Default True
   # 'MENU_EXCLUDE': ('auth.group',),
-  # 'MENU': (
-  #   'sites',
-  #   {'app': 'auth', 'icon':'icon-lock', 'models': ('user', 'group')},
-  #   {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
-  #   {'label': 'Support', 'icon':'icon-question-sign', 'url': '/support/'},
-  # ),
+  #'MENU': (
+  #  {'app': 'auth', 'label': 'Authorization', 'icon':'icon-lock'},
+  #),
 
   # misc
   # 'LIST_PER_PAGE': 15

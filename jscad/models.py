@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 
 from main.utils import cached_property
 
+from simplejson import dumps
 import requests
 
 class FileModel(models.Model):
@@ -21,8 +22,18 @@ class FileModel(models.Model):
   def text(self):
     if self.source:
       return self.source
-    print self.uri
     return requests.get(self.uri).text
+  @property
+  def _json(self):
+    return {
+      'name': self.name,
+      'title': self.name,
+      'url': self.get_url(),
+      'file': self.get_url(),
+      'description': self.description,
+      'parent_id': self.parent_id,
+    }
+  as_json = property(lambda self: dumps(self._json))
   __unicode__ = lambda self: self.name
   class Meta:
     abstract = True
@@ -32,6 +43,11 @@ class Configuration(FileModel):
     ordering = ('name',)
 
 class Item(FileModel):
+  @property
+  def _json(self):
+    d = super(Item,self)._json
+    d['settings'] = [s._json for s in self.itemsetting_set.all()]
+    return d
   class Meta:
     ordering = ('name',)
 
