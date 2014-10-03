@@ -1,0 +1,65 @@
+#editor { 
+  width: 100%;
+  background: rgba(255,255,255,0.75);
+}
+
+#editorWrapper {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  width: 900px;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+}
+
+#editorWrapper:hover, #editorWrapper:focus ~ #editorHandle:hover, #editorHandle:focus {
+  right: 0 !important;  /* slide out */
+}
+
+#editorHandle {
+  left: -25px;
+  top: 45%;
+  position: absolute;
+  z-index: 6;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+/* canvas-modal */
+#canvas-modal {
+  background: white;
+  display: none; /* hide to start */
+  left: 50%;
+  margin-left: -270px;
+  margin-top: -215px;
+  position: fixed;
+  top: 50%;
+  z-index: 10;
+}
+
+#canvas-modal .content {
+  background: white;
+  position: relative;
+  z-index: 11;
+}
+
+#canvas-modal canvas {
+  cursor: pointer;
+}
+#canvas-modal .save {
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
+
+#canvas-modal:before {
+  background: rgba(0,0,0,0.25);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
