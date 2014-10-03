@@ -1,13 +1,13 @@
 pillow
-simplejson
 psycopg2
-simiple-diff
+simplejson
+simiplediff
 requests
 
 django
-django-suit
 django_compressor
 django-devserver
+django-suit
 Django-Next-Please
 
 # This can probably be soon changed to just sorl-thumbnail.

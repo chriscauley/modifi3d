@@ -1,7 +1,6 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-if cat /tmp/uwsgi.pid
+if 'cat /tmp/modifie3d_uwsgi.pid && kill -HUP `cat /tmp/modifie3d_uwsgi.pid`)'
 then
-    kill -HUP `cat /tmp/uwsgi.pid`
     echo "uwsgi reset"
 else
     # this may need to be updatede for django 1.7
